@@ -1,0 +1,660 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 105, 180, 0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(100, 80, 255, 0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #10002b,
+            #240046,
+            #3c096c,
+            #10002b
+        );
+
+    background-size: 200% 200%;
+    animation: backgroundMove 12s ease infinite;
+}
+
+
+/* =========================
+   CAHAYA DI BACKGROUND
+========================= */
+
+.background::before,
+.background::after {
+    content: "";
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+    opacity: 0.35;
+
+    animation: floatingLight 8s ease-in-out infinite;
+}
+
+.background::before {
+    background: #ff4ecd;
+    top: -150px;
+    left: -100px;
+}
+
+.background::after {
+    background: #6547ff;
+    bottom: -150px;
+    right: -100px;
+
+    animation-delay: 3s;
+}
+
+
+/* =========================
+   BINTANG
+========================= */
+
+.stars {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+
+    background: white;
+    border-radius: 50%;
+
+    top: 10%;
+    left: 10%;
+
+    box-shadow:
+        100px 30px white,
+        200px 120px white,
+        350px 50px white,
+        500px 180px white,
+        650px 80px white,
+        800px 200px white,
+        950px 50px white,
+        1100px 150px white,
+
+        150px 400px white,
+        300px 500px white,
+        500px 350px white,
+        700px 450px white,
+        900px 350px white,
+        1100px 500px white;
+
+    animation: starsTwinkle 3s infinite alternate;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    position: relative;
+    z-index: 5;
+
+    width: min(85%, 450px);
+
+    padding: 40px 32px;
+
+    text-align: center;
+    color: white;
+
+    border-radius: 28px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45),
+        inset 0 0 30px rgba(255, 255, 255, 0.04);
+
+    animation: cardAppear 1.2s cubic-bezier(.17,.67,.35,1.2);
+}
+
+
+/* Garis cahaya */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+    inset: -2px;
+
+    border-radius: 35px;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+    );
+
+    z-index: -1;
+
+    opacity: 0.5;
+
+    animation: borderGlow 4s linear infinite;
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.icon {
+    font-size: 60px;
+    
+    margin-bottom: 15px;
+
+    display: inline-block;
+
+    filter:
+        drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+
+    animation:
+        iconFloat 3s ease-in-out infinite,
+        iconRotate 5s ease-in-out infinite;
+}
+
+
+/* =========================
+   JUDUL
+========================= */
+
+h1 {
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 800;
+    margin-bottom: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #ffd6f7,
+        #d8c4ff,
+        #ffffff
+    );
+
+    background-size: 300%;
+
+    background-clip: text;
+    color: transparent;
+
+    animation: textShine 4s linear infinite;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.subtitle {
+    font-size: 20px;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    margin-bottom: 15px;
+
+    font-weight: 500;
+}
+
+.message {
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    position: relative;
+
+    border: none;
+
+    padding: 15px 35px;
+
+    border-radius: 100px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: white;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4ecd,
+            #8c52ff
+        );
+
+    box-shadow:
+        0 10px 30px rgba(180, 60, 255, 0.4);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-5px) scale(1.05);
+
+    box-shadow:
+        0 15px 40px rgba(255, 80, 210, 0.55);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+
+/* Efek cahaya tombol */
+
+button::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+
+    transform: translateX(-100%);
+
+    transition: 0.6s;
+}
+
+button:hover::before {
+    transform: translateX(100%);
+}
+
+
+/* =========================
+   PESAN TERSEMBUNYI
+========================= */
+
+.hidden-message {
+    max-height: 0;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    margin-top: 0;
+
+    transition:
+        max-height 1s ease,
+        opacity 0.8s ease,
+        margin-top 0.8s ease;
+}
+
+.hidden-message.active {
+    max-height: 400px;
+
+    opacity: 1;
+
+    margin-top: 35px;
+}
+
+.hidden-message h2 {
+    font-size: 26px;
+
+    margin-bottom: 15px;
+
+    color: #ffd6f7;
+
+    text-shadow:
+        0 0 15px rgba(255, 100, 220, 0.6);
+}
+
+.hidden-message p {
+    color: rgba(255, 255, 255, 0.75);
+
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+}
+
+.hidden-message span {
+    display: inline-block;
+
+    color: #ffb7e8;
+
+    font-weight: 600;
+
+    animation: heartbeat 1.5s infinite;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+@keyframes floatingLight {
+
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(80px, 50px);
+    }
+
+}
+
+
+@keyframes starsTwinkle {
+
+    0% {
+        opacity: 0.2;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(80px)
+            scale(0.8)
+            rotateX(20deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotateX(0);
+    }
+
+}
+
+
+@keyframes iconFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+}
+
+
+@keyframes iconRotate {
+
+    0%, 100% {
+        rotate: -3deg;
+    }
+
+    50% {
+        rotate: 3deg;
+    }
+
+}
+
+
+@keyframes textShine {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+
+@keyframes borderGlow {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVE HP
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    .card {
+        padding: 40px 25px;
+
+        border-radius: 25px;
+    }
+
+    .icon {
+        font-size: 55px;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    .message {
+        font-size: 14px;
+    }
+
+    button {
+        padding: 13px 28px;
+    }
+}
+
+/* =================================
+   🌸 PEONY FLOWER FALLING EFFECT
+================================= */
+
+#petal-container {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+
+/* Bunga */
+
+.petal {
+    position: absolute;
+
+    top: -80px;
+
+    font-size: 28px;
+
+    user-select: none;
+
+    pointer-events: none;
+
+    animation-name: fallingPetal;
+
+    animation-timing-function: linear;
+
+    animation-fill-mode: forwards;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255, 120, 190, 0.7)
+        );
+}
+
+
+/* Ukuran bunga berbeda */
+
+.petal.small {
+    font-size: 18px;
+}
+
+.petal.medium {
+    font-size: 28px;
+}
+
+.petal.large {
+    font-size: 38px;
+}
+
+
+/* Animasi jatuh */
+
+@keyframes fallingPetal {
+
+    0% {
+        transform:
+            translate3d(0, -80px, 0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    25% {
+        transform:
+            translate3d(40px, 25vh, 0)
+            rotate(90deg);
+    }
+
+    50% {
+        transform:
+            translate3d(-50px, 50vh, 0)
+            rotate(180deg);
+    }
+
+    75% {
+        transform:
+            translate3d(60px, 75vh, 0)
+            rotate(270deg);
+    }
+
+    100% {
+        transform:
+            translate3d(-30px, 110vh, 0)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
